@@ -1,6 +1,8 @@
-= StevenA's Vim settings
+StevenA's Vim settings
+==
 
-== Installation
+Installation
+------
 cd .vim
 ./install
 rake update:bundles
