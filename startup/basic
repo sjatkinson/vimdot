@@ -1,4 +1,5 @@
 
+set hidden
 autocmd! bufwritepost .vimrc source ~/.vimrc
 syntax on
 
