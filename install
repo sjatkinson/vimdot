@@ -5,6 +5,7 @@ cd $(dirname $0)
 dot_dir=$(pwd)
 
 ln -s $dot_dir/startup/vimrc $HOME/.vimrc
+ln -s $dot_dir/startup/gvimrc $HOME/.gvimrc
 ln -s $HOME/src/vimplugins/vim-pathogen/autoload/pathogen.vim $HOME/.vim/autoload/pathogen.vim
 
 cd $old_dir
