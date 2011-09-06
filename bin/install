@@ -1,11 +1,14 @@
 #!/usr/bin/env zsh -v
 
+set -e 
+
 old_dir=$(pwd)
 cd $(dirname $0)
-dot_dir=$(pwd)
+dot_dir=$(dirname $(pwd))
+
+$dot_dir/bin/update-plugins
 
 ln -s $dot_dir/startup/vimrc $HOME/.vimrc
 ln -s $dot_dir/startup/gvimrc $HOME/.gvimrc
-ln -s $HOME/src/vimplugins/vim-pathogen/autoload/pathogen.vim $HOME/.vim/autoload/pathogen.vim
 
 cd $old_dir
