@@ -6,5 +6,6 @@ source $HOME/.vim/startup/window
 source $HOME/.vim/startup/bindings
 source $HOME/.vim/startup/editing
 source $HOME/.vim/startup/filetypes
+source $HOME/.vim/startup/coding
 source $HOME/.vim/startup/filenav
 
