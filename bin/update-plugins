@@ -60,9 +60,7 @@ puts "Update git repositories"
    :syntax_git => "git://github.com/tpope/vim-git.git",
    :syntax_markdown => "git://github.com/ujihisa/vim-markdown.git",
    :syntax_rdoc => "git://github.com/depuracao/vim-rdoc.git",
-
-   # color schemes
-   :colors_solarized => "git://github.com/altercation/vim-colors-solarized.git"
+   :ctrlP => "https://github.com/kien/ctrlp.vim.git",
 }.each do |name, url|
    puts "*" * 72
    puts "*** checking #{name}"
