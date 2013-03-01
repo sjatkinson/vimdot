@@ -1,7 +1,0 @@
-filetype on
-filetype indent on
-filetype plugin on
-
-autocmd BufNewFile,BufRead *.tooltest setfiletype=ruby
-autocmd BufNewFile,BufRead *.bsl setfiletype=xml
-autocmd Filetype ruby setlocal ts=2 sts=2 sw=2 expandtab
