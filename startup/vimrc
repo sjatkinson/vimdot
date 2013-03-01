@@ -1,11 +1,7 @@
 set nocompatible
-silent! call pathogen#runtime_append_all_bundles()
+silent! execute pathogen#infect()
 
-source $HOME/.vim/startup/basic
-source $HOME/.vim/startup/window
-source $HOME/.vim/startup/bindings
-source $HOME/.vim/startup/editing
-source $HOME/.vim/startup/filetypes
-source $HOME/.vim/startup/coding
-source $HOME/.vim/startup/filenav
+source $HOME/.vim/startup/settings
+source $HOME/.vim/startup/bundles
+source $HOME/.vim/startup/work
 

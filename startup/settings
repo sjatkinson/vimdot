@@ -1,0 +1,59 @@
+set hidden
+set autoindent
+set ruler
+set number
+set ignorecase
+set expandtab 
+set softtabstop=3
+set shiftwidth=3
+set autoindent
+
+syntax on
+syntax enable
+filetype plugin indent on
+
+
+
+autocmd! bufwritepost .vimrc source ~/.vimrc
+silent! colorscheme tomorrow-night
+set background=dark
+
+
+function! CurDir()
+    let curdir = substitute(getcwd(), $HOME, "~", "")
+    return curdir
+endfunction
+
+set laststatus=2                              " always a status line
+set statusline=%F                             " full path to file
+set statusline+=\ \ \ [%{&ff}]                " file format
+set statusline+=\ %y                          " filetype
+set statusline+=\ %m                          " modified?
+set statusline+=\ %r                          " readonly?
+set statusline+=\ \ \ pwd:%(%{CurDir()}%)     " the current vim directory
+set statusline+=%=%-10.(%l,%c%V%)\ %p%%/%L    " line,column  %/num lines
+
+let mapleader=','
+map <leader>cd :lcd %:h<CR>
+
+map <F1> <Esc>
+imap <F1> <Esc>
+
+function! InsertTabWrapper()
+   let col = col('.') - 1
+   if !col || getline('.')[col - 1] !~ '\k'
+      return "\<tab>"
+   else
+      return "\<c-p>"
+   endif
+endfunction
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+
+
+autocmd Filetype ruby setlocal ts=2 sts=2 sw=2 expandtab
+
+
+set tags=./tags;
+
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+map <leader>e :edit %%

@@ -1,0 +1,36 @@
+autocmd BufNewFile,BufRead *.tooltest setfiletype=ruby
+autocmd BufNewFile,BufRead *.bsl setfiletype=xml
+
+" adds a include guard for a C++ or C header file. Puts the include guard 
+" at the top and bottom of the file and the following pattern for the 
+" guard name: foo.h -> FOO_H__
+function IncludeGuard()
+   :execute ":normal! ggI#ifndef " .  @% . "__\<esc>"
+   :execute ":normal! :s/" . @% . "/\\U&/\<cr>"
+   :execute ":normal! :s/\\./_/\<cr>"
+   :normal! yypl
+   :execute ":normal! cwdefine\<esc>"
+   :execute ":normal! G$o#endif"
+endfunction
+
+function InsertCopyright()
+   :execute ":normal! ggO// Copyright <c> " . strftime("%Y") . " Intuit, Inc. All rights reserved.\<esc>"
+   :execute ":normal! jO\<esc>"
+endfunction
+
+function InsertIntuitNamespace()
+   :execute ":normal! Inamespace Intuit {\<cr>\<esc>"
+   :execute ":normal! Inamespace Ctg {\<cr>\<esc>"
+   :execute ":normal! Inamespace Pta {\<cr>\<esc>"
+endfunction
+
+function UsingIntuitNamespace()
+   :execute ":normal! Iusing namespace Intuit::Ctg::Pta;\<esc>"
+endfunction
+
+autocmd BufNewFile *.cpp :call InsertCopyright()
+autocmd BufNewFile *.h :call IncludeGuard()
+autocmd BufNewFile *.h :call InsertCopyright()
+
+autocmd BufNewFile,BufRead *.cpp,*.h nnoremap <leader>n :call InsertIntuitNamespace()<cr>
+autocmd BufNewFile,BufRead *.cpp,*.h nnoremap <leader>u :call UsingIntuitNamespace()<cr>
