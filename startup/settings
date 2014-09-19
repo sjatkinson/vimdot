@@ -39,6 +39,7 @@ map <leader>cd :lcd %:h<CR>
 map <F1> <Esc>
 imap <F1> <Esc>
 
+" Smart indenting - insert a tab if we're at the beginning of a line. Else, do completion.
 function! InsertTabWrapper()
    let col = col('.') - 1
    if !col || getline('.')[col - 1] !~ '\k'
@@ -51,7 +52,6 @@ inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
 
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2 expandtab
-
 
 set tags=./tags;
 
