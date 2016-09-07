@@ -5,11 +5,9 @@ autocmd BufNewFile,BufRead *.bsl setfiletype=xml
 " at the top and bottom of the file and the following pattern for the 
 " guard name: foo.h -> FOO_H__
 function IncludeGuard()
-   :execute ":normal! ggI#ifndef " .  @% . "__\<esc>"
-   :execute ":normal! :s/" . @% . "/\\U&/\<cr>"
-   :execute ":normal! :s/\\./_/\<cr>"
-   :normal! yypl
-   :execute ":normal! cwdefine\<esc>"
+   let l:defstr = toupper(expand('%:t:r') . "_H__")
+   :execute ":normal! ggI#ifndef " .  l:defstr . "\<esc>"
+   :execute ":normal! o#define " .  l:defstr . "\<esc>"
    :execute ":normal! G$o#endif"
 endfunction
 
