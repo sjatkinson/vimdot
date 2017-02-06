@@ -32,3 +32,4 @@ autocmd BufNewFile *.h :call InsertCopyright()
 
 autocmd BufNewFile,BufRead *.cpp,*.h nnoremap <leader>n :call InsertIntuitNamespace()<cr>
 autocmd BufNewFile,BufRead *.cpp,*.h nnoremap <leader>u :call UsingIntuitNamespace()<cr>
+
