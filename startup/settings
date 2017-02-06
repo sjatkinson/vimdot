@@ -4,8 +4,8 @@ set ruler
 set number
 set ignorecase
 set expandtab 
-set softtabstop=3
-set shiftwidth=3
+set softtabstop=4
+set shiftwidth=4
 set autoindent
 
 syntax on
@@ -13,6 +13,8 @@ syntax enable
 filetype plugin indent on
 
 
+set mouse=nvi
+set mousemodel=popup
 
 autocmd! bufwritepost .vimrc source ~/.vimrc
 silent! colorscheme tomorrow-night
@@ -57,3 +59,11 @@ set tags=./tags;
 
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 map <leader>e :edit %%
+
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+map <C-f> :NERDTreeToggle<CR>
+
+exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+set list
