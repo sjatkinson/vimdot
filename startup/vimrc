@@ -1,7 +1,6 @@
 set nocompatible
-silent! execute pathogen#infect()
 
 source $HOME/.vim/startup/settings
-source $HOME/.vim/startup/bundles
+source $HOME/.vim/startup/packages
 source $HOME/.vim/startup/work
 

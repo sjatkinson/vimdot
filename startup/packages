@@ -1,0 +1,10 @@
+packadd minpac
+call minpac#init()
+
+call minpac#add('godlygeek/tabular')
+call minpac#add('tpope/vim-surround')
+call minpac#add('tpope/vim-vinegar')
+call minpac#add('k-takata/minpac', {'type': 'opt'})
+
+command! PackUpdate call minpac#update()
+command! PackClean call minpac#clean()
