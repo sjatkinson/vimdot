@@ -1,10 +1,16 @@
-packadd minpac
-call minpac#init()
+if v:version >= 800
+    packadd minpac
+    call minpac#init()
 
-call minpac#add('godlygeek/tabular')
-call minpac#add('tpope/vim-surround')
-call minpac#add('tpope/vim-vinegar')
-call minpac#add('k-takata/minpac', {'type': 'opt'})
+    call minpac#add('godlygeek/tabular')
+    call minpac#add('tpope/vim-surround')
+    call minpac#add('tpope/vim-vinegar')
+    call minpac#add('k-takata/minpac', {'type': 'opt'})
 
-command! PackUpdate call minpac#update()
-command! PackClean call minpac#clean()
+    command! PackUpdate call minpac#update()
+    command! PackClean call minpac#clean()
+else
+    " This will pause startup until the user hits enter
+    " I hate the, but I want to know when not running vim8
+    echom "Running " v:version " no packages enabled"
+endif
