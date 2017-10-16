@@ -1,14 +1,20 @@
-#!/usr/bin/env zsh -v
-
+# install my vim configuration
 set -e 
 
 old_dir=$(pwd)
 cd $(dirname $0)
-dot_dir=$(dirname $(pwd))
+vim_cfg_dir=$(dirname $(pwd))
 
-$dot_dir/bin/update-plugins
+vim_ver=$(vim --version | head -n 1 | awk '{ print $5 }' | awk -F. '{print $1}')
+if [[ $vim_ver == "8" ]] ; then
+    minpac_dir=$vim_cfg_dir/pack/minpac/opt
+    [ ! -d $minpac_dir ] && echo "no minpac dir"
+    [ ! -d $minpac_dir ] && mkdir -p $vim_cfg_dir/pack/minpac/opt && cd $vim_cfg_dir/pack/minpac/opt &&  git clone https://github.com/k-takata/minpac.git
+fi
 
-ln -s $dot_dir/startup/vimrc $HOME/.vimrc
-ln -s $dot_dir/startup/gvimrc $HOME/.gvimrc
+vim_rc="$vim_cfg_dir/startup/vimrc"
+[ ! -f $vim_rc ] && ln -s $vim_rc $HOME/.vimrc
+gvim_rc=$vim_cfg_dir/startup/gvimrc
+[ ! -f $gvim_rc ] && ln -s $gvim_rc $HOME/.gvimrc
 
 cd $old_dir
