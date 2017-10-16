@@ -5,16 +5,39 @@ old_dir=$(pwd)
 cd $(dirname $0)
 vim_cfg_dir=$(dirname $(pwd))
 
+echo "Installing vim config from ${vim_cfg_dir}"
+
 vim_ver=$(vim --version | head -n 1 | awk '{ print $5 }' | awk -F. '{print $1}')
 if [[ $vim_ver == "8" ]] ; then
     minpac_dir=$vim_cfg_dir/pack/minpac/opt
-    [ ! -d $minpac_dir ] && echo "no minpac dir"
+    [ -d $minpac_dir ] && echo "...Minpac already exists!"
     [ ! -d $minpac_dir ] && mkdir -p $vim_cfg_dir/pack/minpac/opt && cd $vim_cfg_dir/pack/minpac/opt &&  git clone https://github.com/k-takata/minpac.git
+else
+    echo "...Not running Vim8! Not install minpac plugin"
 fi
 
-vim_rc="$vim_cfg_dir/startup/vimrc"
-[ ! -f $vim_rc ] && ln -s $vim_rc $HOME/.vimrc
-gvim_rc=$vim_cfg_dir/startup/gvimrc
-[ ! -f $gvim_rc ] && ln -s $gvim_rc $HOME/.gvimrc
+if [ ! -f $HOME/.vimrc ] ; then 
+    echo "...Linking .vimrc"
+    ln -s $vim_cfg_dir/startup/vimrc $HOME/.vimrc
+elif [ ! -L $HOME/.vimrc ] ; then
+    echo "...Found a .vimrc file, removing it"
+    rm $HOME/.vimrc
+    echo "...Linking .vimrc"
+    ln -s $vim_cfg_dir/startup/vimrc $HOME/.vimrc
+else
+    echo "...Symlink for $HOME/.vimrc already exits1"
+fi
+if [ ! -f $HOME/.gvimrc ] ; then 
+    echo "...Linking .gvimrc"
+    ln -s $vim_cfg_dir/startup/gvimrc $HOME/.gvimrc
+elif [ ! -L $HOME/.gvimrc ] ; then
+    echo "...Found a .gvimrc file, removing it"
+    rm $HOME/.gvimrc
+    echo "...Linking .gvimrc"
+    ln -s $vim_cfg_dir/startup/gvimrc $HOME/.gvimrc
+else
+    echo "...Symlink for $HOME/.gvimrc already exits1"
+fi
 
 cd $old_dir
+echo "done."
