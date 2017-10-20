@@ -89,4 +89,4 @@ function! HelpInNewTab ()
     endif
 endfunction
 
-
+map <leader>vim :edit ~/.vim<cr>
