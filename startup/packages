@@ -1,4 +1,6 @@
 if v:version >= 800
+    " matchit is already installed with vim. Not need to use minpac for it
+    packadd! matchit
     packadd minpac
     call minpac#init()
 
@@ -6,9 +8,14 @@ if v:version >= 800
     call minpac#add('tpope/vim-surround')
     call minpac#add('tpope/vim-vinegar')
     call minpac#add('k-takata/minpac', {'type': 'opt'})
+    call minpac#add('junegunn/fzf')
+    call minpac#add('junegunn/fzf.vim')
 
     command! PackUpdate call minpac#update()
     command! PackClean call minpac#clean()
+
+
+     nnoremap <silent> <c-f> :Files<CR>
 else
     " This will pause startup until the user hits enter
     " I hate the, but I want to know when not running vim8
