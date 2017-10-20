@@ -26,6 +26,13 @@ function UsingIntuitNamespace()
    :execute ":normal! Iusing namespace Intuit::Ctg::Pta;\<esc>"
 endfunction
 
+function s:tps_compile()
+    :execute ":compiler tps"
+    :execute ":nmap <leader>m :make %:p:h<cr>"
+endfunction
+
+command! TPSCompile call s:tps_compile()
+
 autocmd BufNewFile *.cpp :call InsertCopyright()
 autocmd BufNewFile *.h :call IncludeGuard()
 autocmd BufNewFile *.h :call InsertCopyright()
@@ -33,3 +40,4 @@ autocmd BufNewFile *.h :call InsertCopyright()
 autocmd BufNewFile,BufRead *.cpp,*.h nnoremap <leader>n :call InsertIntuitNamespace()<cr>
 autocmd BufNewFile,BufRead *.cpp,*.h nnoremap <leader>u :call UsingIntuitNamespace()<cr>
 
+map <leader>tev :edit Src/Low/P/_h/pErrVal.h<cr>
