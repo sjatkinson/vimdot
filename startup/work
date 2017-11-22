@@ -16,28 +16,13 @@ function InsertCopyright()
    :execute ":normal! jO\<esc>"
 endfunction
 
-function InsertIntuitNamespace()
-   :execute ":normal! Inamespace Intuit {\<cr>\<esc>"
-   :execute ":normal! Inamespace Ctg {\<cr>\<esc>"
-   :execute ":normal! Inamespace Pta {\<cr>\<esc>"
-endfunction
-
-function UsingIntuitNamespace()
-   :execute ":normal! Iusing namespace Intuit::Ctg::Pta;\<esc>"
-endfunction
-
-function s:tps_compile()
-    :execute ":compiler tps"
-    :execute ":nmap <leader>m :make %:p:h<cr>"
-endfunction
-
-command! TPSCompile call s:tps_compile()
-
 autocmd BufNewFile *.cpp :call InsertCopyright()
 autocmd BufNewFile *.h :call IncludeGuard()
 autocmd BufNewFile *.h :call InsertCopyright()
 
-autocmd BufNewFile,BufRead *.cpp,*.h nnoremap <leader>n :call InsertIntuitNamespace()<cr>
-autocmd BufNewFile,BufRead *.cpp,*.h nnoremap <leader>u :call UsingIntuitNamespace()<cr>
+autocmd BufNewFile,BufRead *.cpp,*.h execute ":nnoremap <leader>m :make %:p:h<cr>"
+autocmd BufNewFile,BufRead *.cpp,*.h execute ":compiler tps"
 
-map <leader>tev :edit Src/Low/P/_h/pErrVal.h<cr>
+nnoremap <leader>tev :edit Src/Low/P/_h/pErrVal.h<cr>
+nnoremap <leader>n :cn<cr>
+nnoremap <leader>p :cp<cr>
